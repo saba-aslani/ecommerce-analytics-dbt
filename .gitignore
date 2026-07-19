@@ -1,0 +1,20 @@
+# dbt artifacts
+target/
+dbt_packages/
+logs/
+
+# secrets & environment
+profiles.yml
+.env
+dbt-env/
+
+# raw data - never commit data to Git
+olist_data/
+*.csv
+
+# load script contains hardcoded password
+load_raw.py
+
+# system
+.DS_Store
+__pycache__/
