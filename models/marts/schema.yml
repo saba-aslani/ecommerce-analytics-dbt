@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "One row per unique customer"
+    columns:
+      - name: customer_unique_id
+        description: "Primary key - unique identifier for each real customer"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    description: "One row per product with English category names"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_orders
+    description: "Fact table - one row per order with metrics"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'canceled', 'unavailable', 'invoiced', 'processing', 'created', 'approved']
+            
