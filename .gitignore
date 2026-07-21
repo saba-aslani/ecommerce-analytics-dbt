@@ -5,6 +5,7 @@ logs/
 
 # secrets & environment
 profiles.yml
+!ci/profiles.yml
 .env
 dbt-env/
 
